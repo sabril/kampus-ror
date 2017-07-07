@@ -60,3 +60,5 @@ gem "figaro"
 gem 'omniauth-facebook'
 
 gem 'toastr-rails'
+gem 'activeadmin', github: "activeadmin"
+gem 'active_skin'
