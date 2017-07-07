@@ -1,2 +1,8 @@
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<% unless flash.empty? %>
+  <script>
+    <% flash.each do |f| %>
+      <% type = f[0].gsub('notice', 'info').gsub('alert', 'error') %>
+      toastr['<%= type %>']('<%= f[1] %>');    
+    <% end %>
+  </script>
+<% end %>
