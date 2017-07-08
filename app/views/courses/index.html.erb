@@ -1,0 +1,20 @@
+<div class="row">
+  <br/>
+  <% @courses.each do |course| %>
+    <%= link_to course do %>
+      <div class="col s12 m6">
+        <div class="card">
+          <div class="card-image waves-effect waves-block waves-light">
+            <%= image_tag course.image.url %>
+          </div>
+          <div class="card-content">
+            <span class="card-title grey-title text-darken-4">
+              <%= course.title %>
+            </span>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
