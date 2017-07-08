@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col m4">
+    <div class="card z-depth-2">
+      <div class="center">
+        <h1><%= number_to_currency(@course.price) %></h1>
+      </div>
+      <div class="card-action center">
+        <button class="btn waves-effect waves-light green darken-2">
+          Take this course
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col m8">
+    <div class="card z-depth-2">
+      <div class="card-image waves-effect waves-block waves-light">
+        <%= image_tag(@course.image.url) %>
+      </div>
+    </div>
+    <div class="card-content grey-text text-darken-4">
+      <h5><%= @course.title %></h5>
+      <hr/>
+      <%= @course.description %>
+      <div class="collection">
+        <% @tasks.each do |task| %>
+          <%= link_to [@course, task], class: "collection-item" do %>
+            <%= task.title %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
