@@ -7,8 +7,14 @@ Rails.application.routes.draw do
   root to: "courses#index"
   
   resources :courses do
+    # courses/:id/subscribe
+    member do
+      get :subscribe
+    end
     resources :tasks, only: [:show]
   end
+  
+  get "/my_courses", to: "courses#my_courses"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
