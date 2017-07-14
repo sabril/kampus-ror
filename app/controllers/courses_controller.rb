@@ -38,5 +38,8 @@ class CoursesController < ApplicationController
     params.permit!
     @subscription = Subscription.find(params[:item_number])
     @subscription.update_attributes({active: true})
+    respond_to do |format|
+      format.html {render text: "ok" }
+    end
   end
 end
