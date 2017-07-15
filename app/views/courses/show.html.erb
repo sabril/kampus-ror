@@ -33,8 +33,14 @@
       <%= @course.description %>
       <div class="collection">
         <% @tasks.each do |task| %>
-          <%= link_to [@course, task], class: "collection-item" do %>
-            <%= task.title %>
+          <% if can?(:read, task) %>
+            <%= link_to [@course, task], class: "collection-item" do %>
+              <%= task.title %>
+            <% end %>
+          <% else %>
+            <div class="collection-item grey lighten-4">
+              <i><%= task.title %></i>
+            </div>
           <% end %>
         <% end %>
       </div>
