@@ -5,13 +5,13 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @course = Course.find(params[:id])
+    @course = Course.friendly.find(params[:id])
     @tasks = @course.tasks
   end
   
   def subscribe
-    @course = Course.find(params[:id])
-    @subscription = Subscription.find_or_create_by(user: current_user, course_id: params[:id])
+    @course = Course.friendly.find(params[:id])
+    @subscription = Subscription.find_or_create_by(user: current_user, course_id: @course.id)
     if @subscription.active?
       redirect_to my_courses_path
     else

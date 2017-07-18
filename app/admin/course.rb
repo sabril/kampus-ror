@@ -1,6 +1,12 @@
 ActiveAdmin.register Course do
   permit_params :title, :description, :price, :status, :image
   
+  controller do
+    def find_resource
+      scoped_collection.friendly.find(params[:id])
+    end
+  end
+  
   index do
     selectable_column
     column :title do |course|
