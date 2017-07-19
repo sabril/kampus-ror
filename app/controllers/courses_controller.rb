@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
-  protect_from_forgery except: [:notify]
+  protect_from_forgery except: [:payment_notification]
+  before_action :authenticate_user!, only: [:subscribe, :my_courses]
   def index
     @courses = Course.all
   end
