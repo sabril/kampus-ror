@@ -16,3 +16,4 @@
 //= require materialize-sprockets
 //= require toastr
 //= require_tree .
+//= require jquery.raty

@@ -29,6 +29,10 @@
     </div>
     <div class="card-content grey-text text-darken-4">
       <h5><%= @course.title %></h5>
+      <span>
+        <div class="review_star" data-score='<%= @course.average_rating %>'></div>
+        <div><%= pluralize(@reviews.count, 'Review') %></div>
+      </span>
       <hr/>
       <%= @course.description %>
       <div class="collection">
@@ -44,6 +48,11 @@
           <% end %>
         <% end %>
       </div>
+    </div>
+    <div class="card-content">
+      <h5>Reviews</h5>
+      <%= render "reviews/form" if user_signed_in? && current_user.has_course?(@course) && !current_user.has_course_review?(@course) %>
+      <%= render "reviews/reviews" %>
     </div>
   </div>
 </div>

@@ -1,0 +1,12 @@
+<%= form_for [@course, @review] do |f| %>
+  <div id="review_rating"></div>
+  <%= f.text_field :comment %>
+  
+  <%= f.hidden_field :user_id %>
+  <%= f.hidden_field :course_id %>
+  
+  <div class="actions">
+    <%= f.submit "Create Review" %>
+  </div>
+  
+<% end %>

@@ -8,6 +8,9 @@ class CoursesController < ApplicationController
   def show
     @course = Course.friendly.find(params[:id])
     @tasks = @course.tasks
+    
+    @reviews = @course.reviews
+    @review = Review.new(course_id: @course.id, user_id: current_user.id) if user_signed_in?
   end
   
   def subscribe
