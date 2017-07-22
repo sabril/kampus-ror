@@ -14,7 +14,7 @@ class CoursesController < ApplicationController
     @course = Course.friendly.find(params[:id])
     @subscription = Subscription.find_or_create_by(user: current_user, course_id: @course.id)
     if @subscription.active?
-      redirect_to my_courses_path
+      redirect_to @course
     else
       values = {
         :business => "syaiful-facilitator@getkeet.com",
