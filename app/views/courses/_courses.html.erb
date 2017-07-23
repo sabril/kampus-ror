@@ -8,9 +8,11 @@
             <%= image_tag course.image.url %>
           </div>
           <div class="card-content">
-            <span class="card-title grey-title text-darken-4">
+            <div class="card-title grey-title text-darken-4">
               <%= course.title %>
-            </span>
+            </div>
+            <div class="review_star" data-score='<%= course.average_rating %>'></div>
+            <div><%= pluralize(course.reviews.count, 'Review') %></div>
           </div>
         </div>
       </div>
