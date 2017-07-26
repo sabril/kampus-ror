@@ -2,12 +2,12 @@ require 'test_helper'
 
 class CoursesControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
-    get courses_index_url
+    get courses_url
     assert_response :success
   end
 
   test "should get show" do
-    get courses_show_url
+    get course_url(courses(:one))
     assert_response :success
   end
 

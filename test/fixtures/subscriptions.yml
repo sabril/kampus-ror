@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user: one
+  user: user_one
   course: one
   active: false
 
 two:
-  user: two
+  user: user_two
   course: two
   active: false
