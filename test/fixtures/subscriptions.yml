@@ -3,7 +3,7 @@
 one:
   user: user_one
   course: one
-  active: false
+  active: true
 
 two:
   user: user_two

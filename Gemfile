@@ -67,3 +67,4 @@ gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 gem 'cancancan', '~> 2.0'
 
 gem 'friendly_id', '~> 5.1.0'
+gem 'simplecov', :require => false, :group => :test

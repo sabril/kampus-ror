@@ -4,7 +4,7 @@ one:
   user: user_one
   course: one
   star: 1
-  comment: MyText
+  comment: Test Comment
 
 two:
   user: user_two
