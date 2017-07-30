@@ -41,7 +41,7 @@ jobs:
             bundle exec rake db:migrate
 
       - run:
-          name: Run Test
+          name: Run All Test
           command: DISABLE_SPRING=true bin/rake test test/
 
       # Save artifacts
