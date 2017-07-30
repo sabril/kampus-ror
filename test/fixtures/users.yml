@@ -1,5 +1,7 @@
 user_one:
   email: "user_one@test.com"
+  confirmed_at: <%= Time.now %>
   
 user_two:
   email: "user_two@test.com"
+  confirmed_at: <%= Time.now %>

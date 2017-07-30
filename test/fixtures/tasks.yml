@@ -15,3 +15,4 @@ two:
   video_url: MyString
   image: MyString
   slug: task-two
+  preview: true

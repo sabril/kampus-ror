@@ -1,2 +1,3 @@
 admin_one:
   email: "admin@test.com"
+  encrypted_password: <%= AdminUser.new.send(:password_digest, "12345678") %>
