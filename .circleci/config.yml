@@ -42,7 +42,7 @@ jobs:
 
       - run:
           name: Run Test
-          command: bin/rake test test/
+          command: DISABLE_SPRING=true bin/rake test test/
 
       # Save artifacts
       - store_test_results:
