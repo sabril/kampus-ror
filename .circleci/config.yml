@@ -41,8 +41,8 @@ jobs:
             bundle exec rake db:structure:load
 
       - run:
-          name: Parallel RSpec
-          command: bin/rails test
+          name: Run Test
+          command: bin/rake test test/
 
       # Save artifacts
       - store_test_results:
