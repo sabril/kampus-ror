@@ -15,4 +15,19 @@ class Course < ApplicationRecord
   def average_rating
     reviews.blank? ? 0 : reviews.average(:star).round(2)
   end
+  
+  def paypal_link(user)
+    subscription = Subscription.find_or_create_by(user: user, course_id: id)
+    {
+      :business => "syaiful-facilitator@getkeet.com",
+      :cmd => "_xclick",
+      :upload => 1,
+      :amount => price,
+      :notify_url => "https://kampus-ror-sabril.c9users.io/payment_notification",
+      :item_name => title,
+      :item_number => subscription.id,
+      :quantity => 1,
+      :return => "https://kampus-ror-sabril.c9users.io/my_courses"
+    }.to_query
+  end
 end

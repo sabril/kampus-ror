@@ -19,18 +19,7 @@ class CoursesController < ApplicationController
     if @subscription.active?
       redirect_to @course
     else
-      values = {
-        :business => "syaiful-facilitator@getkeet.com",
-        :cmd => "_xclick",
-        :upload => 1,
-        :amount => @course.price,
-        :notify_url => "https://kampus-ror-sabril.c9users.io/payment_notification",
-        :item_name => @course.title,
-        :item_number => @subscription.id,
-        :quantity => 1,
-        :return => "https://kampus-ror-sabril.c9users.io/my_courses"
-      }
-      redirect_to "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
+      redirect_to "https://www.sandbox.paypal.com/cgi-bin/webscr?" + @course.paypal_link(current_user)
     end
   end
   
