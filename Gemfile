@@ -68,3 +68,5 @@ gem 'cancancan', '~> 2.0'
 
 gem 'friendly_id', '~> 5.1.0'
 gem 'simplecov', :require => false, :group => :test
+gem 'acts_as_list'
+gem "activeadmin_sortable_table", github: "sabril/activeadmin_sortable_table"

@@ -1,7 +1,7 @@
 class Course < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
-  has_many :tasks, dependent: :destroy
+  has_many :tasks, -> { order(position: :asc) }, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
   has_many :reviews, dependent: :destroy
   
@@ -29,5 +29,9 @@ class Course < ApplicationRecord
       :quantity => 1,
       :return => "https://kampus-ror-sabril.c9users.io/my_courses"
     }.to_query
+  end
+  
+  def user_progress(user)
+    tasks.length > 0 ? (user.user_tasks.completed.where(task_id: task_ids).length * 100 / tasks.length) : 0
   end
 end

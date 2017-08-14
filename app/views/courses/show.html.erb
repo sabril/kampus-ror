@@ -2,7 +2,10 @@
   <div class="col m4">
     <div class="card z-depth-2">
       <div class="center">
-        <h1><%= user_signed_in? && current_user.has_course?(@course) ? "20%" : number_to_currency(@course.price) %></h1>
+        <h1><%= user_signed_in? && current_user.has_course?(@course) ? "#{@course.user_progress(current_user)}%" : number_to_currency(@course.price) %></h1>
+        <div class="progress">
+          <div class="determinate" style="width: <%= @course.user_progress(current_user) %>%"></div>
+        </div>
       </div>
       <div class="card-action center">
         <% if user_signed_in? && current_user.has_course?(@course) %>
@@ -28,13 +31,14 @@
       </div>
     </div>
     <div class="card-content grey-text text-darken-4">
-      <h5><%= @course.title %></h5>
+      <h4><%= @course.title %></h4>
       <span>
         <div class="review_star" data-score='<%= @course.average_rating %>'></div>
         <div><%= pluralize(@reviews.count, 'Review') %></div>
       </span>
       <hr/>
       <%= @course.description %>
+      <h5>Tasks</h5>
       <div class="collection">
         <% @tasks.each do |task| %>
           <% if can?(:read, task) %>

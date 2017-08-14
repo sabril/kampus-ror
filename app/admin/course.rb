@@ -34,6 +34,17 @@ ActiveAdmin.register Course do
         course.image.present? ? image_tag(course.image.url, height: 300) : content_tag(:span, 'No Image')
       end
     end
+    
+    panel "Tasks" do
+      table_for resource.tasks do
+        handle_column
+        column :title
+        column :description do |task|
+          truncate task.description
+        end
+        column :video_url
+      end
+    end
   end
   
   form do |f|

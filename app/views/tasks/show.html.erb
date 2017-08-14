@@ -14,5 +14,22 @@
       <hr/>
       <%= @task.description %>
     </div>
+    <div class="row">
+      <div class="col m4">
+        <%= link_to "Previous", course_task_path(@task.course, @previous_task), class: "btn left" if @previous_task %>
+      </div>
+      <div class="col m4">
+        <% if user_signed_in? %>
+          <% unless current_user.has_completed_task?(@task) %>
+            <%= link_to "Complete", complete_course_task_path(@task.course, @task), method: :put, class: "btn" %>
+          <% else %>
+            <button class="btn disabled">Completed</button>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="col m4">
+        <%= link_to "Next", course_task_path(@task.course, @next_task), class: "btn right" if @next_task %>
+      </div>
+    </div>
   </div>  
 </div>
