@@ -4,6 +4,7 @@
 $skinLogo: none;
 @import "activeadmin_sortable_table";
 @import "active_skin";
+@import "active_admin/editor/wysiwyg";
 
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:

@@ -37,7 +37,7 @@
         <div><%= pluralize(@reviews.count, 'Review') %></div>
       </span>
       <hr/>
-      <%= @course.description %>
+      <%= raw @course.description %>
       <h5>Tasks</h5>
       <div class="collection">
         <% @tasks.each do |task| %>
