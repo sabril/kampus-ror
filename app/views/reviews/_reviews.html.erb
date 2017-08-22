@@ -1,21 +1,7 @@
 <% if @reviews.blank? %>
-  <span class="center">No Reviews</span>
+  <span id="no_review" class="center">No Reviews</span>
 <% else %>
   <% @reviews.each do |review| %>
-    <hr>
-    <div class="row">
-      <div class="col m1">
-        <%= image_tag avatar_url(review.user), class: "circle responsive-img avatar-small" %>
-      </div>
-      <div class="col m10">
-        <div>
-          <strong><%= review.user.name %></strong>
-          <span class="right"><%= review.created_at %></span>
-        </div>
-        <div><div class="review_star" data-score='<%= review.star %>'></div></div>
-        <div><%= review.comment %></div>
-        <div><%= link_to "Delete", [@course, review], method: :delete, data: {confirm: "Are you sure?" } if can?(:delete, review) %></div>
-      </div>
-    </div>
+    <%= render "reviews/review", review: review %>
   <% end %>
 <% end %>

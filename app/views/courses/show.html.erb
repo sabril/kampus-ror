@@ -55,8 +55,12 @@
     </div>
     <div class="card-content">
       <h5>Reviews</h5>
-      <%= render "reviews/form" if user_signed_in? && current_user.has_course?(@course) && !current_user.has_course_review?(@course) %>
-      <%= render "reviews/reviews" %>
+      <div id="form_review">
+        <%= render "reviews/form" if user_signed_in? && current_user.has_course?(@course) && !current_user.has_course_review?(@course) %>  
+      </div>
+      <div id="review_list">
+        <%= render "reviews/reviews" %>  
+      </div>
     </div>
   </div>
 </div>
