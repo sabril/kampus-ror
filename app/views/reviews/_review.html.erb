@@ -10,6 +10,6 @@
     </div>
     <div><div class="review_star" data-score='<%= review.star %>'></div></div>
     <div><%= review.comment %></div>
-    <div><%= link_to "Delete", [@course, review], method: :delete, data: {confirm: "Are you sure?" } if can?(:delete, review) %></div>
+    <div><%= link_to "Delete", [course, review], method: :delete, data: {confirm: "Are you sure?" } if can?(:delete, review) %></div>
   </div>
 </div>

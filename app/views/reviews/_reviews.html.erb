@@ -2,6 +2,6 @@
   <span id="no_review" class="center">No Reviews</span>
 <% else %>
   <% @reviews.each do |review| %>
-    <%= render "reviews/review", review: review %>
+    <%= render partial: "reviews/review", locals: {review: review, course: @course } %>
   <% end %>
 <% end %>

@@ -3,9 +3,11 @@
     <div class="card z-depth-2">
       <div class="center">
         <h1><%= user_signed_in? && current_user.has_course?(@course) ? "#{@course.user_progress(current_user)}%" : number_to_currency(@course.price) %></h1>
-        <div class="progress">
-          <div class="determinate" style="width: <%= @course.user_progress(current_user) %>%"></div>
-        </div>
+        <% if user_signed_in? %>
+          <div class="progress">
+            <div class="determinate" style="width: <%= @course.user_progress(current_user) %>%"></div>
+          </div>
+        <% end %>
       </div>
       <div class="card-action center">
         <% if user_signed_in? && current_user.has_course?(@course) %>

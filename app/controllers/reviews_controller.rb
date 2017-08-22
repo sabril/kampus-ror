@@ -6,6 +6,7 @@ class ReviewsController < ApplicationController
     @course = Course.friendly.find(params[:course_id])
     @review.course = @course
     @review.save
+    ReviewsChannel.broadcast(@review)
     respond_to do |format|
       format.html do
         redirect_to @course, notice: "Review successfully submitted"
