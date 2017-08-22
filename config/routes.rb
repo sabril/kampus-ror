@@ -12,7 +12,11 @@ Rails.application.routes.draw do
     member do
       get :subscribe
     end
-    resources :tasks, only: [:show]
+    resources :tasks, only: [:show] do
+      member do
+        put :complete
+      end
+    end
     resources :reviews, only: [:create, :destroy]
   end
   

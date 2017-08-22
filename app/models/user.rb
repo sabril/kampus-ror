@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :subscriptions, -> {where(active: true)}, dependent: :destroy
   has_many :courses, through: :subscriptions
   has_many :reviews, dependent: :destroy
+  has_many :user_tasks, dependent: :destroy
   
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -36,4 +37,13 @@ class User < ApplicationRecord
   def has_course_review?(course)
     reviews.where(course: course).first
   end
+  
+  def complete_task(task)
+    user_tasks.find_or_create_by(task: task).update_attributes(completed: true)
+  end
+  
+  def has_completed_task?(task)
+    user_tasks.completed.where(task: task).first
+  end
+  
 end

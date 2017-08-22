@@ -6,7 +6,12 @@ class ReviewsController < ApplicationController
     @course = Course.friendly.find(params[:course_id])
     @review.course = @course
     @review.save
-    redirect_to @course, notice: "Review successfully submitted"
+    respond_to do |format|
+      format.html do
+        redirect_to @course, notice: "Review successfully submitted"
+      end
+      format.js
+    end
   end
   
   def destroy
