@@ -12,7 +12,7 @@
     <div class="card-content grey-text text-darken-4">
       <h5><%= @task.title %></h5>
       <hr/>
-      <%= @task.description %>
+      <%= raw @task.description %>
     </div>
     <div class="row">
       <div class="col m4">
@@ -31,5 +31,5 @@
         <%= link_to "Next", course_task_path(@task.course, @next_task), class: "btn right" if @next_task %>
       </div>
     </div>
-  </div>  
+  </div>
 </div>
