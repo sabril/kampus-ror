@@ -5,6 +5,16 @@ ActiveAdmin.register Course do
     def find_resource
       scoped_collection.friendly.find(params[:id])
     end
+    
+    def create
+      @course = Course.new(permitted_params[:course])
+      if @course.save
+        ActionCable.server.broadcast('course_list', course: CoursesController.render(partial: 'courses/course', locals: {course: @course}).html_safe)
+        redirect_to admin_course_path(@course), notice: "Course successfully created."
+      else
+        render :new
+      end
+    end
   end
   
   index do
