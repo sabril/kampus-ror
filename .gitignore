@@ -20,5 +20,7 @@
 
 # Ignore application configuration
 /config/application.yml
+/config/cloudinary.yml
 /public/system/*
+/public/uploads
 coverage/*

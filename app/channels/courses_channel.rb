@@ -6,8 +6,4 @@ class CoursesChannel < ApplicationCable::Channel
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
   end
-
-  def self.broadcast_to(course, user)
-
-  end
 end
