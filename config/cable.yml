@@ -3,6 +3,9 @@ development:
 
 test:
   adapter: async
+  
+circleci:
+  adapter: async
 
 production:
   adapter: redis
