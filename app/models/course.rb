@@ -20,7 +20,7 @@ class Course < ApplicationRecord
   def paypal_link(user)
     subscription = Subscription.find_or_create_by(user: user, course_id: id)
     {
-      :business => "syaiful@getkeet.com",
+      :business => Rails.application.secrets.paypal_email,
       :cmd => "_xclick",
       :upload => 1,
       :amount => price,

@@ -58,7 +58,6 @@ development:
 test:
   <<: *default
   database: workspace_test
-  encoding: UTF8
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -79,8 +78,12 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+
+circleci:
+  <<: *default
+  encoding: UTF8
+  database: workspace_test
+
 production:
   <<: *default
   database: workspace_production
-  username: workspace
-  password: <%= ENV['WORKSPACE_DATABASE_PASSWORD'] %>

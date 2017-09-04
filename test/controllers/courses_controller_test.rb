@@ -42,4 +42,10 @@ class CoursesControllerTest < ActionDispatch::IntegrationTest
     post payment_notification_path, params: {item_number: subscriptions(:two).id, payment_status: "Completed"}
     assert_response :success
   end
+  
+  test "should be able to search course" do
+    get courses_path, params: {search: "one"}
+    assert_response :success
+    assert assigns(:courses), courses(:one)
+  end
 end

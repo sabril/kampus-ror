@@ -1,0 +1,16 @@
+<%= link_to course do %>
+  <div class="col s12 m6">
+    <div class="card">
+      <div class="card-image waves-effect waves-block waves-light">
+        <%= image_tag course.image.url %>
+      </div>
+      <div class="card-content">
+        <div class="card-title grey-title text-darken-4">
+          <%= course.title %>
+        </div>
+        <div class="review_star" data-score='<%= course.average_rating %>'></div>
+        <div><%= pluralize(course.reviews.count, 'Review') %></div>
+      </div>
+    </div>
+  </div>
+<% end %>
