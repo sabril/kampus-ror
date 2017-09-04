@@ -17,3 +17,9 @@ test:
   api_secret: 4tVup_mkRXcoKj6FpsHADFjM6Ig
   enhance_image_tag: true
   static_image_support: false
+circleci:
+  cloud_name: sabril
+  api_key: '476741753978525'
+  api_secret: 4tVup_mkRXcoKj6FpsHADFjM6Ig
+  enhance_image_tag: true
+  static_image_support: false
