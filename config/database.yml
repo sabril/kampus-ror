@@ -78,6 +78,12 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+
+circleci:
+  <<: *default
+  encoding: UTF8
+  database: workspace_test
+
 production:
   <<: *default
   database: workspace_production
