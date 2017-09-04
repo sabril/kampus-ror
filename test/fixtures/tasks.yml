@@ -7,6 +7,7 @@ one:
   video_url: MyString
   image: MyString
   slug: task-one
+  position: 1
 
 two:
   course: two
@@ -16,3 +17,14 @@ two:
   image: MyString
   slug: task-two
   preview: true
+  position: 1
+  
+three:
+  course: one
+  title: task three
+  description: MyText
+  video_url: MyString
+  image: MyString
+  slug: task-three
+  preview: false
+  position: 2
