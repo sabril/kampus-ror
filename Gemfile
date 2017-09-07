@@ -79,3 +79,5 @@ gem 'newrelic_rpm'
 
 gem 'exception_notification'
 gem 'slack-notifier'
+
+gem "redis", '~> 3.0'
