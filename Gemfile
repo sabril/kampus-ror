@@ -74,3 +74,5 @@ gem 'simplecov', :require => false, :group => :test
 gem 'acts_as_list'
 gem "activeadmin_sortable_table", github: "sabril/activeadmin_sortable_table"
 gem 'active_admin_editor', github: "boontdustie/active_admin_editor"
+
+gem 'newrelic_rpm'
