@@ -4,11 +4,11 @@
 jQuery ->
   load_rating = ->
     $('#review_rating').raty
-      path: '/assets'
+      path: '/images'
       scoreName: 'review[star]'
       score: 4
     $('.review_star').raty
-      path: '/assets'
+      path: '/images'
       score: -> 
         $(this).attr('data-score')
       readOnly: true
