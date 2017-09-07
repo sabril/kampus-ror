@@ -121,6 +121,9 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     ejs (1.1.1)
     erubi (1.6.0)
+    exception_notification (4.1.1)
+      actionmailer (>= 3.0.4)
+      activesupport (>= 3.0.4)
     execjs (2.7.0)
     faraday (0.12.1)
       multipart-post (>= 1.2, < 3)
@@ -280,6 +283,7 @@ GEM
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.1)
+    slack-notifier (2.3.1)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -338,6 +342,7 @@ DEPENDENCIES
   cloudinary
   coffee-rails (~> 4.2)
   devise
+  exception_notification
   figaro
   friendly_id (~> 5.1.0)
   jbuilder (~> 2.5)
@@ -353,6 +358,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   selenium-webdriver
   simplecov
+  slack-notifier
   spring
   spring-watcher-listen (~> 2.0.0)
   toastr-rails

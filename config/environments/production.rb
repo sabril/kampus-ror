@@ -88,4 +88,18 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+  
+  Rails.application.config.middleware.use ExceptionNotification::Rack,
+  email: {
+    email_prefix: "[KAMPUR-ROR] ",
+    sender_address: %{"notifier" <notifier@kampus-ror-sabril.c9users.io>},
+    exception_recipients: %w{syaiful.sabril@gmail.com}
+  },
+  slack: {
+    webhook_url: "https://hooks.slack.com/services/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",
+      channel: "#kampus-ror",
+      additional_parameters: {
+        icon_url: "https://slack.com/img/icons/app-57.png"
+      }
+  }
 end
