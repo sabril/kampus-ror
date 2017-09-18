@@ -17,6 +17,9 @@ class Cart < ApplicationRecord
   	discount_code = DiscountCode.find_by(code: code)
   	if discount_code && discount_code.active && discount_code.expired_date >= Date.today
   		self.discount_code = code
+  		cart_items.each do |item|
+  			item.update_attributes(sub_total: discount_code.discount_total(item.sub_total))
+  		end
   		self.total = discount_code.discount_total(total)
   		save
   	else
@@ -26,6 +29,9 @@ class Cart < ApplicationRecord
 
   def remove_discount
   	self.discount_code = nil
+  	cart_items.each do |item|
+			item.update_attributes(sub_total: item.course.price)
+		end
   	update_total(cart_items.sum(:sub_total))
   	save
   end
