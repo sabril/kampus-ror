@@ -13,6 +13,22 @@ class Cart < ApplicationRecord
   	self.save
   end
 
+  def check_discount(code)
+  	discount_code = DiscountCode.find_by(code: code)
+  	if discount_code && discount_code.active && discount_code.expired_date >= Date.today
+  		self.discount_code = code
+  		self.total = discount_code.discount_total(total)
+  		save
+  	else
+  		return false
+  	end
+  end
+
+  def remove_discount
+  	self.discount_code = nil
+  	update_total(cart_items.sum(:sub_total))
+  	save
+  end
 
   def checkout_url
   	subscription = Subscription.find_or_create_by(user: user, course_id: id)

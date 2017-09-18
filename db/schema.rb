@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170918010436) do
+ActiveRecord::Schema.define(version: 20170918053828) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20170918010436) do
     t.decimal "total", default: "0.0"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "discount_code"
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
@@ -78,6 +79,17 @@ ActiveRecord::Schema.define(version: 20170918010436) do
     t.integer "image_file_size"
     t.datetime "image_updated_at"
     t.string "slug"
+  end
+
+  create_table "discount_codes", force: :cascade do |t|
+    t.string "name"
+    t.string "code"
+    t.string "discount_type", default: "percentage"
+    t.integer "discount_value", default: 10
+    t.date "expired_date", default: "2017-09-18"
+    t.boolean "active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
