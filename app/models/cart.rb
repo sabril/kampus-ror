@@ -21,8 +21,8 @@ class Cart < ApplicationRecord
       :cmd => "_cart",
       :upload => 1,
       :transaction_subject => self.id,
-      :notify_url => "http://cf972c26.ngrok.io/carts/#{self.id}/checkout_notification",
-      :return => "http://cf972c26.ngrok.io/my_courses"
+      :notify_url => "#{Rails.application.secrets.site_url}/carts/#{self.id}/checkout_notification",
+      :return => "#{Rails.application.secrets.site_url}/my_courses"
     }
     cart_items.each_with_index do |item, index|
     	i = index + 1
@@ -38,6 +38,8 @@ class Cart < ApplicationRecord
   		cart_items.each do |item|
   			Subscription.find_or_create_by(user: user, course_id: item.course_id, payment_status: "Completed", active: true)
   		end
+  		self.completed = true
+  		save
   	end
   end
 end

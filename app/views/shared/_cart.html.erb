@@ -1,7 +1,7 @@
 <%= link_to my_cart_path do %>
   My Cart
   <% if current_cart.cart_items.length > 0 %>
-    <span class="new badge blue" data-badge-caption="item"><%= current_cart.cart_items.length %></span>
+    <span class="new badge blue" data-badge-caption="<%= pluralize(current_cart.cart_items.length, 'item') %>"></span>
   <% end %>
 <% end %>
 
