@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   protect_from_forgery except: [:payment_notification]
-  before_action :authenticate_user!, only: [:subscribe, :my_courses]
+  before_action :authenticate_user!, only: [:subscribe, :my_courses, :add_to_cart]
   def index
     if params[:search]
       @courses = Course.where("LOWER(title) like ?", "%#{params[:search].downcase}%")
@@ -29,6 +29,12 @@ class CoursesController < ApplicationController
   
   def my_courses
     @courses = current_user.courses
+  end
+
+  def add_to_cart
+    @course = Course.friendly.find(params[:id])
+    current_cart.add_item(@course.id)
+    redirect_to my_cart_path, notice: "Course successfully added to cart"
   end
   
   def payment_notification

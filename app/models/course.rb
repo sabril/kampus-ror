@@ -4,7 +4,8 @@ class Course < ApplicationRecord
   has_many :tasks, -> { order(position: :asc) }, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
   has_many :reviews, dependent: :destroy
-  
+  has_many :cart_items
+
   validates :title, presence: true, length: { maximum: 50 }
   validates :description, presence: true
   validates :price, presence: true, numericality: true
