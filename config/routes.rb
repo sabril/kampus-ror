@@ -8,6 +8,15 @@ Rails.application.routes.draw do
   
   root to: "courses#index"
   get :home, to: "home#index"
+  get :checkout, to: "carts#checkout"
+
+  resources :carts do
+    member do
+      post :checkout_notification
+    end
+  end
+
+  resources :cart_items, only: [:destroy]
   
   resources :courses do
     # courses/:id/subscribe
@@ -26,6 +35,7 @@ Rails.application.routes.draw do
   get "/my_courses", to: "courses#my_courses"
   get "/my_cart", to: "carts#index"
   post "/payment_notification", to: "courses#payment_notification"
+  post "/:id/checkout_notification", to: "carts#checkout_notification"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

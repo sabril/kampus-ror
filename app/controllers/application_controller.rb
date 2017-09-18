@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   end
   
   def current_cart
-    current_user.current_cart
+    @cart ||= current_user.current_cart
   end
 
   def show_search_bar

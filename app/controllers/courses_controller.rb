@@ -34,7 +34,7 @@ class CoursesController < ApplicationController
   def add_to_cart
     @course = Course.friendly.find(params[:id])
     current_cart.add_item(@course.id)
-    redirect_to my_cart_path, notice: "Course successfully added to cart"
+    redirect_to my_cart_path, notice: "Course added to cart"
   end
   
   def payment_notification
