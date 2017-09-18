@@ -10,7 +10,7 @@ class Cart < ApplicationRecord
 
   def update_total(new_total)
   	self.total = new_total
-  	self.save
+  	save
   end
 
   def check_discount(code)
@@ -33,7 +33,6 @@ class Cart < ApplicationRecord
 			item.update_attributes(sub_total: item.course.price)
 		end
   	update_total(cart_items.sum(:sub_total))
-  	save
   end
 
   def checkout_url
