@@ -1,3 +1,4 @@
+require 'paypal-sdk-core'
 class CartsController < ApplicationController
 	protect_from_forgery except: [:checkout_notification]
   before_action :authenticate_user!, except: [:checkout_notification]
@@ -12,11 +13,15 @@ class CartsController < ApplicationController
   end
 
   def checkout_notification
-    @cart = Cart.find(params[:id])
-    if @cart && @cart.completed == false
-      @cart.process_payment(params)
+    if PayPal::SDK::Core::API::IPN.valid?(request.raw_post)
+      @cart = Cart.find(params[:id])
+      if @cart && @cart.completed == false
+        @cart.process_payment(params)
+      end
+      head :ok
+    else
+      head :not_acceptable
     end
-  	head :ok
   end
 
   def get_discount
