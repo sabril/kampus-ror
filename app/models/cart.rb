@@ -57,8 +57,11 @@ class Cart < ApplicationRecord
 
   def process_payment(params)
   	if params["payment_status"] == "Completed"
-  		cart_items.each do |item|
-  			Subscription.find_or_create_by(user: user, course_id: item.course_id, payment_status: "Completed", active: true)
+  		cart_items.each_with_index do |item, index|
+  			i = index + 1
+  			if params["mc_gross_#{i}"].to_f == item.sub_total.to_f && params["mc_currency"] == "USD"
+  				Subscription.find_or_create_by(user: user, course_id: item.course_id, payment_status: "Completed", active: true)
+  			end
   		end
   		self.completed = true
   		save
