@@ -5,11 +5,17 @@ class Cart < ApplicationRecord
   def add_item(course_id)
   	course = Course.find(course_id)
     cart_items.find_or_create_by(course_id: course_id, sub_total: course.price) 
-    update_total(cart_items.sum(:sub_total))
+    update_total
   end
 
-  def update_total(new_total)
-  	self.total = new_total
+  def remove_item(item_id)
+  	item = cart_items.find(item_id)
+  	item.destroy
+  	update_total
+  end
+
+  def update_total
+  	self.total = cart_items.sum(:sub_total)
   	save
   end
 
@@ -32,11 +38,10 @@ class Cart < ApplicationRecord
   	cart_items.each do |item|
 			item.update_attributes(sub_total: item.course.price)
 		end
-  	update_total(cart_items.sum(:sub_total))
+  	update_total
   end
 
   def checkout_url
-  	subscription = Subscription.find_or_create_by(user: user, course_id: id)
     params = {
       :business => Rails.application.secrets.paypal_email,
       :cmd => "_cart",

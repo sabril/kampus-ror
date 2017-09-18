@@ -36,7 +36,6 @@ Rails.application.routes.draw do
   get "/my_courses", to: "courses#my_courses"
   get "/my_cart", to: "carts#index"
   post "/payment_notification", to: "courses#payment_notification"
-  post "/:id/checkout_notification", to: "carts#checkout_notification"
   post :get_discount, to: "carts#get_discount"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

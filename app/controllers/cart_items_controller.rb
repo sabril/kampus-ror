@@ -3,7 +3,7 @@ class CartItemsController < ApplicationController
 
 	def destroy
 		@cart_item = CartItem.find(params[:id])
-		@cart_item.destroy
+		current_cart.remove_item(@cart_item.id)
 		redirect_to my_cart_path, notice: "Item successfully removed"
 	end
 end

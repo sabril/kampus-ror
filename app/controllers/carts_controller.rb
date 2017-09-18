@@ -20,7 +20,6 @@ class CartsController < ApplicationController
   end
 
   def get_discount
-    Rails.logger.info "PARAMS: #{params[:cart][:discount_code]}"
     if @cart.check_discount(params[:cart][:discount_code])
       redirect_to my_cart_path, notice: "Discount Code Added"
     else
