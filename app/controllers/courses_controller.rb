@@ -31,6 +31,12 @@ class CoursesController < ApplicationController
     @courses = current_user.courses
   end
   
+  def add_to_cart
+    @course = Course.friendly.find(params[:id])
+    current_cart.add_item(@course.id)
+    redirect_to my_cart_path, notice: "Course added to cart"
+  end
+  
   def payment_notification
     params.permit!
     @subscription = Subscription.find(params[:item_number])

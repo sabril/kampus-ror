@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  course: one
+  cart: one
+  sub_total: 9.99
+
+two:
+  course: two
+  cart: two
+  sub_total: 9.99

@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :courses, through: :subscriptions
   has_many :reviews, dependent: :destroy
   has_many :user_tasks, dependent: :destroy
+  has_many :carts
   
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -44,6 +45,10 @@ class User < ApplicationRecord
   
   def has_completed_task?(task)
     user_tasks.completed.where(task: task).first
+  end
+  
+  def current_cart
+    carts.find_or_create_by(completed: false)
   end
   
 end
