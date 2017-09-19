@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :carts do
     member do
       post :checkout_notification
+      get :remove_discount
     end
   end
   resources :cart_items, only: [:destroy]
@@ -29,6 +30,7 @@ Rails.application.routes.draw do
   get "/my_courses", to: "courses#my_courses"
   get "/my_cart", to: "carts#index"
   get :checkout, to: "carts#checkout"
+  post :get_discount, to: "carts#get_discount"
   post "/payment_notification", to: "courses#payment_notification"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -12,10 +12,28 @@ class CartsController < ApplicationController
   end
   
   def checkout_notification
-    @cart = Cart.find(params[:id])
-    unless @cart.completed?
-      @cart.process_payment(params)
+    if PayPal::SDK::Core::API::IPN.valid?(request.raw_post)
+      @cart = Cart.find(params[:id])
+      unless @cart.completed?
+        @cart.process_payment(params)
+      end
+      head :ok
+    else
+      head :not_acceptable
     end
-    head :ok
+  end
+  
+  def get_discount
+    @cart = current_cart
+    if @cart.check_discount(params[:cart][:discount_code])
+      redirect_to my_cart_path, notice: "Discount code added"
+    else
+      redirect_to my_cart_path, alert: "Discount code is invalid"
+    end
+  end
+  
+  def remove_discount
+    current_cart.remove_discount
+    redirect_to my_cart_path, notice: "Discount removed"
   end
 end
