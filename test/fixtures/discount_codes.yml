@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  code: MyString
+  discount_percentage: 1
+  expired_date: 2017-09-19
+  active: false
+
+two:
+  name: MyString
+  code: MyString
+  discount_percentage: 1
+  expired_date: 2017-09-19
+  active: false

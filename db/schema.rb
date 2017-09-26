@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170812234803) do
+ActiveRecord::Schema.define(version: 20170919151805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,26 @@ ActiveRecord::Schema.define(version: 20170812234803) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "cart_items", force: :cascade do |t|
+    t.bigint "course_id"
+    t.bigint "cart_id"
+    t.decimal "sub_total", default: "0.0"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_cart_items_on_cart_id"
+    t.index ["course_id"], name: "index_cart_items_on_course_id"
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.boolean "completed", default: true
+    t.decimal "total", default: "0.0"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "discount_code"
+    t.index ["user_id"], name: "index_carts_on_user_id"
+  end
+
   create_table "courses", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -59,6 +79,16 @@ ActiveRecord::Schema.define(version: 20170812234803) do
     t.integer "image_file_size"
     t.datetime "image_updated_at"
     t.string "slug"
+  end
+
+  create_table "discount_codes", force: :cascade do |t|
+    t.string "name"
+    t.string "code"
+    t.integer "discount_percentage", default: 10
+    t.date "expired_date", default: "2017-10-03"
+    t.boolean "active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -145,6 +175,9 @@ ActiveRecord::Schema.define(version: 20170812234803) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "cart_items", "carts"
+  add_foreign_key "cart_items", "courses"
+  add_foreign_key "carts", "users"
   add_foreign_key "reviews", "courses"
   add_foreign_key "reviews", "users"
   add_foreign_key "subscriptions", "courses"

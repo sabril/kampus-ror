@@ -1,0 +1,40 @@
+<% if @cart.cart_items.length > 0 %>
+  <table>
+    <thead>
+      <tr>
+        <th>Course</th>
+        <th>Price</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cart.cart_items.each do |item| %>
+        <tr>
+          <td><%= link_to item.course.title, item.course %></td>
+          <td><%= number_to_currency item.sub_total %></td>
+          <td><%= link_to "Remove", item, method: :delete, data: {confirm: "Are you sure?"} %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <p>
+    <% if @cart.discount_code.present? %>
+      Discount Code: <b><%= @cart.discount_code %></b> <%= link_to "Remove", remove_discount_cart_path(@cart) %>
+    <% else %>
+      <%= form_for @cart, url: get_discount_path, method: :post do |f| %>
+        <div class="input-field inline">
+          <%= f.text_field :discount_code, placeholder: "Discount Code" %>
+          <%= f.submit "Apply Discount" %>
+        </div>
+      <% end %>
+    <% end %>
+  </p>
+  <p>
+    Total: <b><%= number_to_currency @cart.total %></b>
+  </p>
+  <%= link_to "Pay with Paypal", checkout_path, class: "btn right" %>
+<% else %>
+  <p class="flow-text center">
+    No items found in your chart.
+  </p>
+<% end %>
