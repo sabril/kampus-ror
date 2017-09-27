@@ -61,7 +61,7 @@ gem "figaro"
 gem 'omniauth-facebook'
 
 gem 'toastr-rails'
-gem 'activeadmin', github: "activeadmin"
+gem 'activeadmin', "1.0.0"
 gem 'active_skin'
 
 # gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
