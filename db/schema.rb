@@ -74,10 +74,6 @@ ActiveRecord::Schema.define(version: 20170919151805) do
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "image_file_name"
-    t.string "image_content_type"
-    t.integer "image_file_size"
-    t.datetime "image_updated_at"
     t.string "slug"
   end
 
@@ -85,7 +81,7 @@ ActiveRecord::Schema.define(version: 20170919151805) do
     t.string "name"
     t.string "code"
     t.integer "discount_percentage", default: 10
-    t.date "expired_date", default: "2017-10-03"
+    t.date "expired_date", default: "2017-10-10"
     t.boolean "active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

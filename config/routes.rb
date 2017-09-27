@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  namespace :api do
+    scope module: :v2, constraints: ApiVersion.new('v2') do
+      resources :courses, only: [:index]
+    end
+    scope module: :v1, constraints: ApiVersion.new('v1', true) do
+      resources :courses do
+        resources :tasks
+      end
+    end
+    post 'auth/login', to: 'authentication#authenticate'
+    match '*path', :to => 'application#routing_error', via: :all
+  end
+
+
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
