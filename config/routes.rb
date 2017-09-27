@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  if Rails.env.development?
+    mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/api/graphql"
+  end
+
   namespace :api do
     scope module: :v2, constraints: ApiVersion.new('v2') do
       resources :courses, only: [:index]
@@ -8,6 +12,7 @@ Rails.application.routes.draw do
         resources :tasks
       end
     end
+    post "/graphql", to: "graphql#execute"
     post 'auth/login', to: 'authentication#authenticate'
     match '*path', :to => 'application#routing_error', via: :all
   end

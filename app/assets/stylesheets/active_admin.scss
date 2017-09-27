@@ -1,7 +1,7 @@
 @import "active_admin/mixins";
 @import "active_admin/base";
 
-$skinLogo: none;
+$skinLogo: url("sabril-agency.png") no-repeat;
 @import "activeadmin_sortable_table";
 @import "active_skin";
 @import "active_admin/editor/wysiwyg";

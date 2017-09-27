@@ -33,6 +33,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'jwt'
 
+gem 'graphql', '~> 1.6.8'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -85,3 +87,4 @@ gem 'slack-notifier'
 
 gem "redis", '~> 3.0'
 gem 'paypal-sdk-core', :git => "https://github.com/paypal/sdk-core-ruby.git"
+gem 'graphiql-rails', group: :development
