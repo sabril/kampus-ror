@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   protect_from_forgery except: [:payment_notification]
-  before_action :authenticate_user!, only: [:subscribe, :my_courses]
+  before_action :authenticate_user!, only: [:subscribe, :my_courses, :add_to_cart]
   def index
     if params[:search]
       @courses = Course.where("LOWER(title) like ?", "%#{params[:search].downcase}%")
