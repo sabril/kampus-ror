@@ -4,8 +4,13 @@ class Cart < ApplicationRecord
   
   def add_item(course_id)
     course = Course.find(course_id)
-    cart_items.find_or_create_by(course_id: course.id, sub_total: course.price)
-    update_total
+    unless user.has_course?(course)
+      cart_items.find_or_create_by(course_id: course.id, sub_total: course.price)
+      update_total
+      return "Course added to cart."
+    else
+      return "Course already purchased."
+    end
   end
   
   def remove_item(cart_item_id)

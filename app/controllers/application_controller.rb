@@ -16,7 +16,6 @@ class ApplicationController < ActionController::Base
   end
   
   def current_cart
-    return unless current_user
     @cart ||= current_user.current_cart
   end
 
